@@ -36,10 +36,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  my_new_project:
+  analytics:
     # Applies to all files under models/example/
     example:
       +materialized: table
     staging:
+      +database: '{{ env_var("DBT_DATABASE","DBT_DEV_DB")}}'
       +materialized: table
       +schema: STAGING
